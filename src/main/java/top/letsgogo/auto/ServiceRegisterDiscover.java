@@ -23,7 +23,7 @@ public class ServiceRegisterDiscover implements CommandLineRunner {
     private String serverPort;
 
     private final static String serviceNamePrefix = "service-api-";
-    private final static String path = "/service/pool/" + serviceNamePrefix;
+    private static String path = "/service/pool/" + serviceNamePrefix;
     /**
      * 被调用的服务名
      */
@@ -38,8 +38,9 @@ public class ServiceRegisterDiscover implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         try {
+            path = path + getIpAddress() + ":" + serverPort;
             //首先注册向管理中心注册自己的服务
-            String getPath = ZkManager.addNode(path + getIpAddress() + ":" + serverPort, "config", CreateMode.EPHEMERAL);
+            String getPath = ZkManager.addNode(path, "config", CreateMode.EPHEMERAL);
             if (!Strings.isNullOrEmpty(getPath)) {
                 System.out.println(getPath + "服务注册成功");
             }
@@ -121,5 +122,9 @@ public class ServiceRegisterDiscover implements CommandLineRunner {
 
     public static void setNextServiceInfo(Map<String, List<String>> nextServiceInfo) {
         ServiceRegisterDiscover.nextServiceInfo = nextServiceInfo;
+    }
+
+    public static String getPath() {
+        return path;
     }
 }

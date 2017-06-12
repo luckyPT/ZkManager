@@ -71,11 +71,36 @@ public class ZkManager {
         return "";
     }
 
+    /**
+     * 删除节点
+     *
+     * @param path
+     * @return
+     */
+    public static boolean deleteNode(String path) {
+        try {
+            if (zkClient.exists(path)) {
+                zkClient.delete(path);
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("删除节点异常：" + e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * 订阅节点变化
+     *
+     * @param nodePath
+     * @param listener
+     */
     public static void subscribeChildChanges(String nodePath, IZkChildListener listener) {
         if (zkClient.exists(nodePath)) {
             zkClient.subscribeChildChanges(nodePath, listener);
         }
     }
+
 
     public static void main2(String[] arges) {
         ZkManager.addNode("/dao", "data operation", CreateMode.PERSISTENT);
