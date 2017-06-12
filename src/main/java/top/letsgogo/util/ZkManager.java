@@ -1,12 +1,14 @@
 package top.letsgogo.util;
 
 import org.I0Itec.zkclient.IZkChildListener;
+import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.serialize.SerializableSerializer;
 import org.apache.zookeeper.CreateMode;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @author panteng
@@ -95,14 +97,61 @@ public class ZkManager {
      * @param nodePath
      * @param listener
      */
-    public static void subscribeChildChanges(String nodePath, IZkChildListener listener) {
+    public static boolean subscribeChildChanges(String nodePath, IZkChildListener listener) {
         if (zkClient.exists(nodePath)) {
             zkClient.subscribeChildChanges(nodePath, listener);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 订阅节点数据变化
+     *
+     * @param nodePath
+     * @param listener
+     * @return
+     */
+    public static boolean subscribeDataChanges(String nodePath, IZkDataListener listener) {
+        if (zkClient.exists(nodePath)) {
+            zkClient.subscribeDataChanges(nodePath, listener);
+        }
+        return false;
+    }
+
+    /**
+     * 写数据
+     *
+     * @param path
+     * @param obj
+     * @return
+     */
+    public static boolean setData(String path, Object obj) {
+        try {
+            if (zkClient.exists(path)) {
+                zkClient.writeData(path, obj);
+            } else {
+                zkClient.create(path, obj, CreateMode.EPHEMERAL);
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("zk写数据异常" + e.getMessage());
+            return false;
         }
     }
 
+    /**
+     * 读取数据
+     *
+     * @param path
+     * @param <T>
+     * @return
+     */
+    public static <T> T getData(String path) {
+        return zkClient.readData(path, true);
+    }
 
-    public static void main2(String[] arges) {
+    public static void main(String[] arges) {
         ZkManager.addNode("/dao", "data operation", CreateMode.PERSISTENT);
         ZkManager.addNode("/service", "service provider", CreateMode.PERSISTENT);
         ZkManager.addNode("/controller", "work control", CreateMode.PERSISTENT);
@@ -112,6 +161,13 @@ public class ZkManager {
         ZkManager.addNode("/dao/configration", "machine list", CreateMode.PERSISTENT);
         ZkManager.addNode("/service/configration", "machine list", CreateMode.PERSISTENT);
         ZkManager.addNode("/controller/configration", "machine list", CreateMode.PERSISTENT);
+        System.out.println(ZkManager.getData("/controller/configration"));
+        Properties prop = new Properties();
+        prop.setProperty("testKey1", "testValue1");
+        prop.setProperty("testKey2", "testValue2");
+        ZkManager.setData("/testData", prop);
+        System.out.println(ZkManager.getData("/testData"));
+        ZkManager.setData("/service/configration", prop);
         /*ZkManager.addNode("/controller/api1", "api1", CreateMode.EPHEMERAL);
         Map<String, Object> map = new HashMap<>();
         ZkManager.getAllNodesAndVlue("/", map);
