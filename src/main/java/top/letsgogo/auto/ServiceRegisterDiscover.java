@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 import org.apache.zookeeper.CreateMode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 import top.letsgogo.util.ZkManager;
 
 import java.net.Inet4Address;
@@ -17,7 +16,7 @@ import java.util.*;
  * @description
  * @date 17-6-9.
  */
-@Component
+//@Component
 public class ServiceRegisterDiscover implements CommandLineRunner {
     @Value("${server.port}")
     private String serverPort;
@@ -46,7 +45,7 @@ public class ServiceRegisterDiscover implements CommandLineRunner {
             }
             discoverNextServiceInfo();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("服务注册失败：" + e.getMessage());
         }
     }
 

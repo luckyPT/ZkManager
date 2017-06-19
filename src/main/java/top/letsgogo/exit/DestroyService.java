@@ -14,7 +14,11 @@ import top.letsgogo.util.ZkManager;
 public class DestroyService implements DisposableBean {
     @Override
     public void destroy() throws Exception {
-        ZkManager.deleteNode(ServiceRegisterDiscover.getPath());
+        try {
+            ZkManager.deleteNode(ServiceRegisterDiscover.getPath());
+        } catch (Exception e) {
+            System.out.println("ZK服务注销异常" + e.getMessage());
+        }
         System.out.println("程序结束... ...");
     }
 }

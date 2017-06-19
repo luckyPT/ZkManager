@@ -151,7 +151,7 @@ public class ZkManager {
         return zkClient.readData(path, true);
     }
 
-    public static void main(String[] arges) {
+    public static void main2(String[] arges) {
         ZkManager.addNode("/dao", "data operation", CreateMode.PERSISTENT);
         ZkManager.addNode("/service", "service provider", CreateMode.PERSISTENT);
         ZkManager.addNode("/controller", "work control", CreateMode.PERSISTENT);

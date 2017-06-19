@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.letsgogo.util.ZkManager;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -26,10 +27,22 @@ public class MainController {
         return "Welcome to, LETS GOGO";
     }
 
+    @RequestMapping("nodes")
+    public String getZkNodes(Map<String, Object> map) {
+        Map<String, Object> nodesMap = new HashMap<>();
+        ZkManager.getAllNodesAndVlue("/", nodesMap);
+
+        Map<String, String> webData = new HashMap<String, String>();
+        for (Map.Entry entry : nodesMap.entrySet()) {
+            webData.put(entry.getKey().toString(), entry.getValue().toString());
+        }
+
+        map.put("data", webData);
+        return "nodes";
+    }
+
     @RequestMapping("index")
     public String index(Map<String, Object> map) {
-        ZkManager.getAllNodesAndVlue("/", map);
-        map.put("nodes", map);
         return "index";
     }
 

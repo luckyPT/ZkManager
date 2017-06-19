@@ -1,7 +1,6 @@
 package top.letsgogo.config;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 import top.letsgogo.util.ZkManager;
 
 import java.util.Properties;
@@ -11,17 +10,21 @@ import java.util.Properties;
  * @description
  * @date 17-6-12.
  */
-@Component
+//@Component
 public class ZkConfig implements CommandLineRunner {
     private static String configPath = "/service/configration";
     protected static Properties prop = new Properties();
 
     @Override
     public void run(String... strings) throws Exception {
-        prop = ZkManager.getData(configPath);
-        System.out.println("读取ZK配置... ...\n config=" + prop);
-        //监听配置变化
-        ZkManager.subscribeDataChanges(configPath, new ConfigDataListener());
+        try {
+            prop = ZkManager.getData(configPath);
+            System.out.println("读取ZK配置... ...\n config=" + prop);
+            //监听配置变化
+            ZkManager.subscribeDataChanges(configPath, new ConfigDataListener());
+        } catch (Exception e) {
+            System.out.println("Zk异常" + e.getMessage());
+        }
     }
 
     public static String getConfigPath() {
