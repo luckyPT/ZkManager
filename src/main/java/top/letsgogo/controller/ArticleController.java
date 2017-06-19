@@ -42,7 +42,10 @@ public class ArticleController {
 
     @RequestMapping(value = "image", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadImage(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+    public String uploadImage(@RequestParam("file") MultipartFile file, HttpServletRequest request, String author) {
+        if (!"panteng".equals(author)) {
+            return "error: pleace input right author";
+        }
         try {
             java.nio.file.Files.copy(file.getInputStream(), Paths.get(ConstantConfig.IMAGE_PATH, file.getOriginalFilename()));
         } catch (Exception e) {

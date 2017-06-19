@@ -59,7 +59,7 @@
         }
 
         .cont {
-            width: 1200px;
+            width: 100%;
             margin-left: 0px;
         }
 
@@ -68,33 +68,23 @@
             width: 100%;
         }
 
-        .yanse {
-            background: #be4355;
-            width: 50%;
-            position: absolute;
-            right: 0px;
-            z-index: -1px;
-            float: right;
-            height: 70px
-        }
-
         .head-left {
             float: left;
             height: 41px;
-            width: 135px;
+            width: auto;
             margin-left: 47px;
             padding-top: 15px;
         }
 
         /*nav导航盒子*/
         .nav {
-            width: 820px;
+            width: 100%;
             height: 70px;
             line-height: 54px;
             text-align: center;
             font-size: 16px;
             position: relative;
-            background: #be4355 url(image/head/nav_bg.jpg) no-repeat left bottom;
+            background: #be4355;
             padding-top: 16px;
             padding-left: 150px;
             float: right;
@@ -195,9 +185,16 @@
         }
 
         .box04 {
-            left: 683px
+            left: 685px
         }
 
+        .box05 {
+            left: 819px
+        }
+
+        .box06 {
+            left: 952px
+        }
     </style>
     <title>天气空间</title>
 </head>
@@ -206,51 +203,64 @@
 <!--头部开始 -->
 <div class="head ">
     <div class="cont">
-        <div class="head-left"><a href="#"><img src="image/head/logo.png" alt=""/></a></div>
         <div class="nav">
             <!--导航条-->
             <ul class="nav-main">
-                <li>天气首页</li>
-                <li id="li-1">穿衣指数<span></span></li>
-                <li id="li-2">用伞指数<span></span></li>
-                <li id="li-3">运动指数<span></span></li>
-                <li id="li-4">洗车指数<span></span></li>
+                <li>客栈首页</li>
+                <li id="li-1">JAVA<span></span></li>
+                <li id="li-2">PYTHON<span></span></li>
+                <li id="li-3">算法<span></span></li>
+                <li id="li-4">数据库<span></span></li>
+                <li id="li-5">分布式<span></span></li>
+                <li id="li-6">前端<span></span></li>
             </ul>
             <!--隐藏盒子-->
             <div id="box-1" class="hidden-box hidden-loc-index">
                 <ul>
-                    <li>长袖</li>
-                    <li>短袖</li>
+                    <li>java基础</li>
+                    <li>框架</li>
                 </ul>
             </div>
             <div id="box-2" class="hidden-box hidden-loc-us">
                 <ul>
-                    <li>遮阳伞</li>
-                    <li>雨伞</li>
-                    <li>雨衣</li>
-                    <li>防雪</li>
+                    <li>PYTHON基础</li>
+                    <li>框架</li>
                 </ul>
             </div>
             <div id="box-3" class="hidden-box hidden-loc-info">
                 <ul>
-                    <li>室内运动</li>
-                    <li>室外运动</li>
-                    <li>跑步</li>
-                    <li>游泳</li>
-                    <li>慢走</li>
-                    <li>爬山</li>
-                    <li>骑车</li>
+                    <li>排序算法</li>
+                    <li>查找算法</li>
+                    <li>二叉树</li>
+                    <li>列表</li>
+                    <li>数组</li>
+                    <li>集合</li>
+                    <li>映射</li>
                 </ul>
             </div>
             <div id="box-4" class="hidden-box hidden-loc-info box04">
                 <ul>
-                    <li>适宜洗车</li>
-                    <li>不宜洗车</li>
+                    <li>MySql</li>
+                    <li>redis</li>
+                    <li>memcache</li>
+                    <li>mongoDb</li>
+                </ul>
+            </div>
+            <div id="box-5" class="hidden-box hidden-loc-info box05">
+                <ul>
+                    <li>LVS</li>
+                    <li>Nginx</li>
+                    <li>zookeeper</li>
+                </ul>
+            </div>
+            <div id="box-6" class="hidden-box hidden-loc-info box06">
+                <ul>
+                    <li>bootstrap</li>
+                    <li>vue.js</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="yanse"></div>
 </div>
 <!--头部结束 -->
 <script type="text/javascript" src="js/head/main.js"></script>

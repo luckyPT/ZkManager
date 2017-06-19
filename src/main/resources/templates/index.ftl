@@ -22,7 +22,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <title>Welcome</title>
+    <title>猿媛客栈</title>
 </head>
 <body>
 <div id="head-nav" style="width: 100%;height: 70px;overflow: visible;position:absolute;top:0px;z-index: 10">
