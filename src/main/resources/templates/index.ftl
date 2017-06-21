@@ -61,7 +61,7 @@
                  style="height: 100%;width: 100%">
         </div>
         <div class="col-md-8">
-            <a href="#">
+            <a target="_blank" v-bind:href="'/article/id/' + article.id">
                 <h4 style="color: #BC2A4D">{{article.title}}</h4>
             </a>
 

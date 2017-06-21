@@ -31,6 +31,10 @@ public class ArticleService {
         return articleRepository.findByTitle(title);
     }
 
+    public Article findById(String id) {
+        return articleRepository.findById(id);
+    }
+
     public List<Article> findByTitleRegex(Pattern pattern) {
         return articleRepository.findByTitleRegex(pattern);
     }

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author panteng
@@ -38,6 +39,17 @@ public class ArticleController {
     @ResponseBody
     public List<Article> getArticles() {
         return articleService.findTop10ByPublishTimeDesc();
+    }
+
+    @RequestMapping("id/{id}")
+    public String getArticleById(@PathVariable("id") String id, Map<String, Object> map) {
+        Article article = articleService.findById(id);
+        map.put("title", article.getTitle() == null ? "" : article.getTitle());
+        map.put("summary", article.getSummary() == null ? "" : article.getSummary());
+        map.put("content", article.getContent() == null ? "" : article.getContent());
+        map.put("publishTime", article.getPublishTime() == null ? "" : article.getPublishTime());
+        map.put("author", article.getAuthor() == null ? "" : article.getAuthor());
+        return "article";
     }
 
     @RequestMapping(value = "image", method = RequestMethod.POST)

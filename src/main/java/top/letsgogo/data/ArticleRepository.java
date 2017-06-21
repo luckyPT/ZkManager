@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
 public interface ArticleRepository extends MongoRepository<Article, String> {
     Article findByTitle(String title);
 
+    Article findById(String id);
+
     /**
      * 正则表达式查询
      *
