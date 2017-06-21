@@ -71,7 +71,9 @@
                 <span class="glyphicon glyphicon-bookmark" style="margin-top: 4px"></span>&nbsp;&nbsp;
                 <span style="color: #555555; padding-left: 4px;padding-right:4px;background:#E0E0E0;border:1px solid #A0A0A0"
                       v-for="keyWord in article.keyWords">{{keyWord}}</span>
-                <button style="float: right" type="button" class="btn btn-danger">阅读全文</button>
+                <a target="_blank" v-bind:href="'/article/id/' + article.id">
+                    <button style="float: right" type="button" class="btn btn-danger">阅读全文</button>
+                </a>
             </div>
         </div>
     </div>
