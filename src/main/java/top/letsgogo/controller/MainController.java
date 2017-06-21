@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import top.letsgogo.util.ZkManager;
 
 import java.util.HashMap;
@@ -21,10 +20,9 @@ import java.util.Map;
 @RequestMapping("/")
 @ComponentScan("top.letsgogo.*")
 public class MainController {
-    @RequestMapping("")
-    @ResponseBody
+    @RequestMapping("hello")
     public String hello() {
-        return "Welcome to, LETS GOGO";
+        return "WELCOME TO LETSGOGO";
     }
 
     @RequestMapping("nodes")
@@ -39,6 +37,11 @@ public class MainController {
 
         map.put("data", webData);
         return "nodes";
+    }
+
+    @RequestMapping("")
+    public String defaultIndex(Map<String, Object> map) {
+        return "index";
     }
 
     @RequestMapping("index")
