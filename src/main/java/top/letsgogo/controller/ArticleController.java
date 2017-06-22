@@ -37,8 +37,9 @@ public class ArticleController {
 
     @RequestMapping("")
     @ResponseBody
-    public List<Article> getArticles() {
-        return articleService.findTop10ByPublishTimeDesc();
+    public List<Article> getArticles(@RequestParam("") String pageNum) {
+        //return articleService.findTop10ByPublishTimeDesc();
+        return articleService.findAllByPage(Integer.parseInt(pageNum), 10);
     }
 
     @RequestMapping("id/{id}")

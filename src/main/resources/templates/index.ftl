@@ -21,7 +21,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="/js/vue/vue.min.js"></script>
     <title>猿媛客栈</title>
 </head>
 <body>
@@ -111,10 +111,11 @@
         }
     });
 
+    var currentNum = 0;
     //请求文章
     function getArticle() {
         $.ajax({
-            url: '/article',
+            url: '/article?pageNum=' + currentNum,
             type: 'GET', //GET
             data: '',
             async: true,    //或false,是否异步
@@ -123,10 +124,30 @@
             success: function (resp) {
                 console.log(resp);
                 articleList.articles = articleList.articles.concat(resp);
+                currentNum++;
             }
         });
     }
     getArticle();
+
+    /**
+     * 判断滚动条是否到最底端的方法
+     * @param Element obj
+     */
+    function isScrollBottom(obj) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /*添加滚动监听事件*/
+    $(window).bind('scroll', function () {
+        if (isScrollBottom(window)) {
+            getArticle();
+        }
+    });
+
 </script>
 </body>
 </html>
