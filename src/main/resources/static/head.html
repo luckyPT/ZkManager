@@ -16,6 +16,22 @@
             blr: expression(this.onFocus=this.blur())
         }
 
+        .menu_a {
+            color: #FFFFFF;
+        }
+
+        .menu_a:visited {
+            color: #FFFFFF;
+        }
+
+        .menu_a:active {
+            color: #be4355;
+        }
+
+        .menu_a:hover {
+            color: #be4355;
+        }
+
         /*去掉a标签的虚线框，避免出现奇怪的选中区域*/
         html {
             height: 100%;
@@ -90,7 +106,8 @@
             float: right;
             font-weight: bold;
             font-family: "微软雅黑";
-            z-index: 1000
+            z-index: 1000;
+            overflow: visible;
         }
 
         /*nav-main*/
@@ -207,6 +224,32 @@
                 left: 952px
             }
         }
+
+        @media ( max-width: 991px) {
+            .hidden-loc-index {
+                left: 10px;
+            }
+
+            .hidden-loc-us {
+                left: 10px;
+            }
+
+            .hidden-loc-info {
+                left: 10px;
+            }
+
+            .box04 {
+                left: 10px;
+            }
+
+            .box05 {
+                left: 10px;
+            }
+
+            .box06 {
+                left: 10px;
+            }
+        }
     </style>
     <title>天气空间</title>
 </head>
@@ -230,6 +273,7 @@
                 <li id="li-4">数据库<span></span></li>
                 <li id="li-5">分布式<span></span></li>
                 <li id="li-6">前端<span></span></li>
+                <li><a style="display: block" class="menu_a" target="_blank" href="/welfare">源码福利</a></li>
             </ul>
             <!--隐藏盒子-->
             <div id="box-1" class="hidden-box hidden-loc-index">

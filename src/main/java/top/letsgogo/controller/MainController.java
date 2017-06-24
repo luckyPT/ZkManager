@@ -49,6 +49,11 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("welfare")
+    public static String welfarePage() {
+        return "welfare";
+    }
+
     public static void main(String[] arges) {
         SpringApplication.run(MainController.class, arges);
     }

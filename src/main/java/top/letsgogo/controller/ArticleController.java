@@ -92,6 +92,7 @@ public class ArticleController {
             article.setSummary(summary);
             article.setAuthor(author);
             article.setPublishTime(currentTime + "");
+            article.setContent(article.getContent().replaceAll("<img ", "<img style=\"max-width:100%;\""));
             articleService.addArticle(article);
             response.getWriter().println("OK");
         } catch (Exception e) {

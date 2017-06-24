@@ -48,7 +48,7 @@ public class ArticleService {
     }
 
     public List<Article> findAllByPage(int startIndex, int pageSize) {
-        Page<Article> articles = articleRepository.findAll(new PageRequest(startIndex, pageSize));
+        Page<Article> articles = articleRepository.findAllByOrderByPublishTimeDesc(new PageRequest(startIndex, pageSize));
         return articles.getContent();
     }
 }

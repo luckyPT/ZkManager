@@ -36,5 +36,5 @@ public interface ArticleRepository extends MongoRepository<Article, String> {
      */
     List<Article> findTop10ByOrderByPublishTimeDesc();
 
-    Page<Article> findAll(org.springframework.data.domain.Pageable pageable);
+    Page<Article> findAllByOrderByPublishTimeDesc(org.springframework.data.domain.Pageable pageable);
 }
