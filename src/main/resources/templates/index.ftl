@@ -25,11 +25,16 @@
     <title>猿媛客栈</title>
 </head>
 <body>
-<div id="head-nav" style="width: 100%;height: 70px;overflow: visible;position:absolute;top:0px;z-index: 10">
-</div>
-<div class="container-fluid" style="margin-top:80px">
+<#--<div id="head-nav" style="width: 100%;height: 70px;overflow: visible;position:absolute;top:0px;z-index: 10">-->
+<#--</div>-->
+<div class="container-fluid">
+    <div id="head-nav" class="row">
+
+    </div>
     <div class="row">
-        <div class="col-md-3"></div>
+        <div id="labelCloud" class="col-md-3">
+
+        </div>
         <div class="col-md-6">
             <div class="row">
                 <div class="panel panel-default">
@@ -88,6 +93,17 @@
         dataType: 'html', //返回的数据格式：json/xml/html/script/jsonp/text
         success: function (resp) {
             $('#head-nav').html(resp);
+        }
+    });
+    $.ajax({
+        url: '/ftl/labelCloud',
+        type: 'GET', //GET
+        data: '',
+        async: true,    //或false,是否异步
+        timeout: 15000,    //超时时间
+        dataType: '*', //返回的数据格式：json/xml/html/script/jsonp/text
+        success: function (resp) {
+            $('#labelCloud').html(resp);
         }
     });
     $("#slice").load(function () {

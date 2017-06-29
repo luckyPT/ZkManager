@@ -4,7 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import top.letsgogo.util.ZkManager;
 
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import java.util.Map;
 @ComponentScan("top.letsgogo.*")
 public class MainController {
     @RequestMapping("hello")
+    @ResponseBody
     public String hello() {
         return "WELCOME TO LETSGOGO";
     }
@@ -52,6 +55,11 @@ public class MainController {
     @RequestMapping("welfare")
     public static String welfarePage() {
         return "welfare";
+    }
+
+    @RequestMapping("ftl/{ftlname}")
+    public static String getFtlPage(Map<String, Object> map, @PathVariable String ftlname) {
+        return ftlname;
     }
 
     public static void main(String[] arges) {
