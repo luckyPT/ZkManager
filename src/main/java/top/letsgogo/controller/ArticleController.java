@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * @author panteng
@@ -103,5 +104,12 @@ public class ArticleController {
 
             }
         }
+    }
+
+    @RequestMapping("search")
+    @ResponseBody
+    public List<Article> getArticleByKeyWords(String keyWords) {
+        System.out.println("搜索关键词：" + keyWords);
+        return articleService.findByTitleRegex(Pattern.compile("^.*" + keyWords + ".*"));
     }
 }

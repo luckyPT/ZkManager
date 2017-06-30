@@ -39,8 +39,8 @@ public class ArticleService {
         return articleRepository.findByTitleRegex(pattern);
     }
 
-    public List<Article> findByKeyWords(String keyWords) {
-        return articleRepository.findBykeyWords(keyWords);
+    public List<Article> findByKeyWords(Pattern pattern) {
+        return articleRepository.findBykeyWordsRegex(pattern);
     }
 
     public List<Article> findTop10ByPublishTimeDesc() {

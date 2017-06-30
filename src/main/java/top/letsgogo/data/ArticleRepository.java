@@ -27,7 +27,7 @@ public interface ArticleRepository extends MongoRepository<Article, String> {
      */
     List<Article> findByTitleRegex(Pattern pattern);
 
-    List<Article> findBykeyWords(String keyWords);
+    List<Article> findBykeyWordsRegex(Pattern keyWords);
 
     /**
      * 排序，限制返回个数

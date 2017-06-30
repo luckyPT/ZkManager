@@ -40,7 +40,7 @@ public class ArticleServiceTest {
 
     @Test
     public void findByKeyWords() {
-        List<Article> articles = articleService.findByKeyWords("java");
+        List<Article> articles = articleService.findByKeyWords(Pattern.compile("^.*衣.*"));
         System.out.println("java = " + articles.get(0).toString());
     }
 

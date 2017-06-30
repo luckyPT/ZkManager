@@ -164,6 +164,23 @@
         }
     });
 
+    /*文章搜索*/
+    function searchArticle(keyWords) {
+        $.ajax({
+            url: '/article/search?keyWords=' + keyWords,
+            type: 'GET', //GET
+            data: '',
+            async: true,    //或false,是否异步
+            timeout: 15000,    //超时时间
+            dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
+            success: function (resp) {
+                console.log(resp);
+                articleList.articles = [];
+                articleList.articles = articleList.articles.concat(resp);
+                currentNum++;
+            }
+        });
+    }
 </script>
 </body>
 </html>
