@@ -40,7 +40,7 @@ public class ArticleService {
     }
 
     public List<Article> findByKeyWords(Pattern pattern) {
-        return articleRepository.findBykeyWordsRegex(pattern);
+        return articleRepository.findByKeyWordsRegex(pattern);
     }
 
     public List<Article> findTop10ByPublishTimeDesc() {

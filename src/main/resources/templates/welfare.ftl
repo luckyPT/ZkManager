@@ -42,7 +42,10 @@
             </p>
         </div>
     </div>
-    <div class="row" style="margin: 6px">
+    <div class="row" style="margin: 6px" id="productsList">
+        <products v-for="product in codeProducts" v-bind:product="product">
+
+        </products>
         <div class="col-md-2" style="text-align: center;border: 2px solid #80FFFF">
             <h4>付款留言：网站源码</h4>
             <img src="/image/moneyQR/10.jpg" style="height: 100%;width: 100%">
@@ -70,4 +73,42 @@
         </div>
     </div>
 </div>
+<script type="text/x-template" id="single-product">
+    <div class="col-md-2" style="text-align: center;border: 2px solid #80FFFF">
+        <h4>付款留言：{{product.productName}}</h4>
+        <img v-bind:src="'/image/moneyQR/'+product.price+'.jpg'" style="height: 100%;width: 100%">
+        <a href="#">代码介绍</a>
+    </div>
+</script>
+<script type="text/javascript">
+    Vue.component('products', {
+        template: '#single-product',
+        props: ['product'],
+        props: {
+            product: {
+                default: {productName: "无标题", price: "1"}
+            }
+        }
+    });
+    // 创建根实例
+    var productList = new Vue({
+        el: '#productsList',
+        data: {
+            codeProducts: []
+        }
+    });
+
+    //加载商品
+    $.ajax({
+        url: '/code/all',
+        type: 'GET', //GET
+        data: '',
+        async: true,    //或false,是否异步
+        timeout: 15000,    //超时时间
+        dataType: '*', //返回的数据格式：json/xml/html/script/jsonp/text
+        success: function (resp) {
+            productList.codeProducts = resp;
+        }
+    });
+</script>
 </body>
