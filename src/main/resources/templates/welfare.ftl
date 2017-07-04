@@ -46,30 +46,16 @@
         <products v-for="product in codeProducts" v-bind:product="product">
 
         </products>
-        <div class="col-md-2" style="text-align: center;border: 2px solid #80FFFF">
-            <h4>付款留言：网站源码</h4>
-            <img src="/image/moneyQR/10.jpg" style="height: 100%;width: 100%">
-            <a href="#">代码介绍</a>
-        </div>
-        <div class="col-md-2" style="text-align: center;border: 2px solid #80FFFF">
-            <h4>付款留言：JSON序列化</h4>
-            <img src="/image/moneyQR/1.jpg" style="height: 100%;width: 100%">
-            <a href="#">代码介绍</a>
-        </div>
-        <div class="col-md-2" style="text-align: center;border: 2px solid #80FFFF">
-            <h4>付款留言：java zk api</h4>
-            <img src="/image/moneyQR/2.jpg" style="height: 100%;width: 100%">
-            <a href="#">代码介绍</a>
-        </div>
-        <div class="col-md-2" style="text-align: center;border: 2px solid #80FFFF">
-            <h4>付款留言：spring boot-mongoDb</h4>
-            <img src="/image/moneyQR/5.jpg" style="height: 100%;width: 100%">
-            <a href="#">代码介绍</a>
-        </div>
-        <div class="col-md-2" style="text-align: center;border: 2px solid #80FFFF">
-            <h4>付款留言：代码定制</h4>
-            <img src="/image/moneyQR/1.jpg" style="height: 100%;width: 100%">
-            <a href="#">代码介绍</a>
+        <div>
+            <button type="button" class="btn btn-info" onclick="$('#addProduct').css('display','block')">增加商品</button>
+            <form action="/code/add" id="addProduct" style="display: none">
+                <input name="productName" type="text" placeholder="productName"/>
+                <input name="productDesc" type="text" placeholder="productDesc"/>
+                <input name="price" type="text" placeholder="price"/>
+                <input name="reserveCount" type="text" placeholder="reserveCount"/>
+                <input type="text" name="verifyCode" placeholder="verifyCode">
+                <input type="submit"></input
+            </form>
         </div>
     </div>
 </div>
@@ -77,7 +63,9 @@
     <div class="col-md-2" style="text-align: center;border: 2px solid #80FFFF">
         <h4>付款留言：{{product.productName}}</h4>
         <img v-bind:src="'/image/moneyQR/'+product.price+'.jpg'" style="height: 100%;width: 100%">
-        <a href="#">代码介绍</a>
+        <a v-on:click="show(product.productName)" style="cursor: pointer">代码介绍</a>
+
+        <p v-bind:id="product.productName" style="display: none">{{product.productDesc}}</p>
     </div>
 </script>
 <script type="text/javascript">
@@ -86,7 +74,7 @@
         props: ['product'],
         props: {
             product: {
-                default: {productName: "无标题", price: "1"}
+                default: {productName: "无标题", price: "1", productDesc: "无"}
             }
         }
     });
@@ -110,5 +98,8 @@
             productList.codeProducts = resp;
         }
     });
+    function show(id) {
+        $('#' + id).css("display", "block");
+    }
 </script>
 </body>
